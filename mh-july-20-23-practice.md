@@ -1,22 +1,27 @@
----
-title: "july 20 practice"
-author: "Marie Hogan"
-date: "2023-07-21"
-output: 
-  github_document:
-    toc: true
-    toc_depth: 6
----
+july 20 practice
+================
+Marie Hogan
+2023-07-21
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+- <a href="#my-goal-make-a-calendar-using-the-calendr-package"
+  id="toc-my-goal-make-a-calendar-using-the-calendr-package">My Goal: Make
+  a Calendar Using the calendR Package</a>
+  - <a href="#the-default-calendar-from-calendr-looks-like-this"
+    id="toc-the-default-calendar-from-calendr-looks-like-this">The default
+    calendar from calendR looks like this</a>
+  - <a href="#customizing-the-date-range"
+    id="toc-customizing-the-date-range">Customizing the Date Range</a>
+  - <a href="#more-customization" id="toc-more-customization">More
+    Customization</a>
+  - <a href="#adding-a-background-image"
+    id="toc-adding-a-background-image">Adding a Background Image</a>
 
 ### My Goal: Make a Calendar Using the calendR Package
 
-A secondary goal is to continually commit and push my changes to a Github repository as practice.
+A secondary goal is to continually commit and push my changes to a
+Github repository as practice.
 
-```{r message=FALSE, warning=FALSE}
+``` r
 library(tidyverse)
 library(calendR)
 library(lubridate)
@@ -24,15 +29,20 @@ library(lubridate)
 
 #### The default calendar from calendR looks like this
 
-```{r}
+``` r
 calendR()
 ```
 
-I don't like this. I want a dateless calendar for tracking work progress. I also want it to be prettier. I am using [this r-coder tutorial](https://r-coder.com/calendar-plot-r/) as my resource for customization.
+![](mh-july-20-23-practice_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+I don’t like this. I want a dateless calendar for tracking work
+progress. I also want it to be prettier. I am using [this r-coder
+tutorial](https://r-coder.com/calendar-plot-r/) as my resource for
+customization.
 
 #### Customizing the Date Range
 
-```{r}
+``` r
 #start calendar today
 starting_day <- today()
 #end a week from today
@@ -41,9 +51,11 @@ ending_day <- today() + weeks()
 calendR(start_date = starting_day,end_date = ending_day)
 ```
 
+![](mh-july-20-23-practice_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
 I now want to remove the large numbers in the middle of the day boxes.
 
-```{r fig.height=6, fig.width=8, message=FALSE, warning=FALSE}
+``` r
 calendR(month = month(today()), year = year(today()),
         #color the weekends
         special.days = "weekend",
@@ -59,13 +71,20 @@ calendR(month = month(today()), year = year(today()),
         )
 ```
 
-I had trouble changing the color or text position or text size, even though I am following the tutorial. I thought maybe it would help to revert to a monthly rather than custom range calendar since there's more functionality with monthly calendars. See above: it may have helped?
+![](mh-july-20-23-practice_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-This calendar will update the time frame to stay in the current month and year, so long as you refresh it. The "today" label works the same and will change as the date changes.
+I had trouble changing the color or text position or text size, even
+though I am following the tutorial. I thought maybe it would help to
+revert to a monthly rather than custom range calendar since there’s more
+functionality with monthly calendars. See above: it may have helped?
+
+This calendar will update the time frame to stay in the current month
+and year, so long as you refresh it. The “today” label works the same
+and will change as the date changes.
 
 #### More Customization
 
-```{r message=FALSE, warning=FALSE}
+``` r
 calendR(month = month(today()), year = year(today()),
         #color the weekends
         special.days = "weekend",
@@ -85,9 +104,11 @@ calendR(month = month(today()), year = year(today()),
         )
 ```
 
+![](mh-july-20-23-practice_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
 #### Adding a Background Image
 
-```{r message=FALSE, warning=FALSE}
+``` r
 calendR(month = month(today()), year = year(today()),
         
         #to save as pdf, uncomment the next line
@@ -117,3 +138,5 @@ calendR(month = month(today()), year = year(today()),
       
         )
 ```
+
+![](mh-july-20-23-practice_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
