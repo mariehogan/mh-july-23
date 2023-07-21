@@ -2,9 +2,41 @@
 title: "july 20 practice"
 author: "Marie Hogan"
 date: "2023-07-21"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 6
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+
+### My Goal: Make a Calendar Using the calendR Package
+
+A secondary goal is to continually commit and push my changes to a Github repository as practice.
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(calendR)
+library(lubridate)
+```
+
+#### The default calendar from calendR looks like this
+
+```{r}
+calendR()
+```
+
+I don't like this. I want a dateless calendar for tracking work progress. I also want it to be prettier. I am using [this r-coder tutorial](https://r-coder.com/calendar-plot-r/) as my resource for customization.
+
+#### Customizing the Date Range
+
+```{r}
+#start calendar today
+starting_day <- today()
+#end a week from today
+ending_day <- today() + weeks()
+#generate calendar
+calendR(start_date = starting_day,end_date = ending_day)
 ```
