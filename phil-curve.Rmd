@@ -1,0 +1,43 @@
+---
+title: "phil-curve-at-home-gmm"
+author: "Marie Hogan"
+date: "2023-07-25"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(haven)
+```
+
+```{r}
+df <- read_dta("/Users/mariehogan/Downloads/data_reg.dta")
+df <- df %>% mutate(infl_reg_sign = -1*infl_reg,
+              infl_reg_time_agg = -0.25*infl_reg) 
+#need lagged bartik
+df <- df %>% mutate(d20_qt_bartik_sa = qt_bartik_sa - lag(df$qt_bartik_sa, 20))
+df$L4_d20_qt_bartik_sa <- lag(df$qt_bartik_sa, 4)
+
+beta = 0.99
+#lagged instruments
+df$L4_rp = lag(df$rp,4)
+df$L4_mean_une = lag(df$mean_une,4)
+df$u_sum <- df$mean_une
+df$usum20 <-for (i in 1:20) {
+  #within EACH loop we're dealing w every row. loop over sums not rows...
+  df$u_sum = df$u_sum + beta^i * df$u_sum^1
+}
+#seems too big, should unemp be divided by 100 first??
+
+```
+
+see:<https://www.tutorialspoint.com/how-to-create-geometric-progression-series-in-r>
+
+```{r}
+y <- df$infl_reg_time_agg
+x <- 
+```
